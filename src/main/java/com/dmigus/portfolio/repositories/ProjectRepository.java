@@ -10,4 +10,6 @@ import com.dmigus.portfolio.models.Project;
 @CrossOrigin(origins = "http://localhost:4200")
 public interface ProjectRepository extends JpaRepository<Project,Integer> {
 
+
+
 }

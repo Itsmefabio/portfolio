@@ -2,13 +2,19 @@ package com.dmigus.portfolio.models;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
 @Entity
 @Table(name="projects")
+@CrossOrigin(origins = "http://localhost:4200")
 public class Project {
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="projects_Id")
 private int projId;
 	@Column(name="project_Name")
