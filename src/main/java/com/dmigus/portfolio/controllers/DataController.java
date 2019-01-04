@@ -21,7 +21,6 @@ import com.dmigus.portfolio.repositories.JobRepository;
 import com.dmigus.portfolio.repositories.ProjectRepository;
 import com.dmigus.portfolio.repositories.UserRepository;
 
-
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("/api")
@@ -62,12 +61,13 @@ public class DataController {
 		proj1.setProjDescription("qwerwrfw");
 		projectRepository.save(proj1);
 	}
+
 	@CrossOrigin(origins = "http://localhost:4200")
 	@PostMapping("project")
-	
-	public Project create( Project project) {
-		 projectRepository.save(project);
-		 return null;
+
+	public Project create(@RequestBody Project project) {
+		projectRepository.save(project);
+		return null;
 	}
 
 	@GetMapping(path = { "project/{id}" })
@@ -76,12 +76,34 @@ public class DataController {
 		return projectRepository.findById(id);
 	}
 
-	
-
 	@DeleteMapping(path = { "project/{id}" })
 	public Project delete(@PathVariable("id") int id) {
 
 		projectRepository.deleteById(id);
+		return null;
+
+	}
+
+	@CrossOrigin(origins = "http://localhost:4200")
+	@PostMapping("job")
+
+	public Job create(@RequestBody Job job) {
+		jobRepository.save(job);
+
+		return null;
+	}
+
+	@GetMapping(path = { "job/{id}" })
+	@CrossOrigin(origins = "http://localhost:4200")
+	public Optional<Job> findOneJob(@PathVariable("id") int id) {
+		return jobRepository.findById(id);
+	}
+
+	@CrossOrigin(origins = "http://localhost:4200")
+	@DeleteMapping(path = { "job/{id}" })
+	public Job deleteJob(@PathVariable("id") int id) {
+
+		jobRepository.deleteById(id);
 		return null;
 
 	}

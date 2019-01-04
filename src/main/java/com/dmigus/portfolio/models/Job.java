@@ -4,6 +4,8 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -11,15 +13,17 @@ import javax.persistence.Table;
 @Table(name = "jobs")
 public class Job {
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "jobs_Id")
 	private int jobId;
 	@Column(name = "company_Name")
 	private String companyName;
-	@Column(name = "position")
-	private String postion;
-	@Column(name = "from")
+	@Column(name = "Occupation")
+	private String occupation;
+	
+	@Column(name = "worked_From")
 	private Date from;
-	@Column(name = "to")
+	@Column(name = "worked_To")
 	private Date to;
 	@Column(name = "duties")
 	private String duties;
@@ -39,14 +43,15 @@ public class Job {
 	public void setCompanyName(String companyName) {
 		this.companyName = companyName;
 	}
-
-	public String getPostion() {
-		return postion;
+	public String getOccupation() {
+		return occupation;
 	}
 
-	public void setPostion(String postion) {
-		this.postion = postion;
+	public void setOccupation(String occupation) {
+		this.occupation = occupation;
 	}
+
+	
 
 	public Date getFrom() {
 		return from;
@@ -74,8 +79,9 @@ public class Job {
 
 	@Override
 	public String toString() {
-		return "Job [jobId=" + jobId + ", companyName=" + companyName + ", postion=" + postion + ", from=" + from
+		return "Job [jobId=" + jobId + ", companyName=" + companyName + ", occupation=" + occupation + ", from=" + from
 				+ ", to=" + to + ", duties=" + duties + "]";
 	}
 
+	
 }
