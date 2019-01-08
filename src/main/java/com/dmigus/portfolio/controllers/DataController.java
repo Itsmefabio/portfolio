@@ -14,12 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.dmigus.portfolio.models.Email;
 import com.dmigus.portfolio.models.Job;
 import com.dmigus.portfolio.models.Project;
 import com.dmigus.portfolio.models.User;
 import com.dmigus.portfolio.repositories.JobRepository;
 import com.dmigus.portfolio.repositories.ProjectRepository;
 import com.dmigus.portfolio.repositories.UserRepository;
+import com.dmigus.portfolio.services.EmailSender;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -28,9 +30,9 @@ public class DataController {
 	private JobRepository jobRepository;
 	private ProjectRepository projectRepository;
 	private UserRepository userRepository;
-
+	private EmailSender emailSender;
 	public DataController(JobRepository jobRepository, ProjectRepository projectRepository,
-			UserRepository userRepository) {
+			UserRepository userRepository,EmailSender emailSender) {
 		super();
 		this.jobRepository = jobRepository;
 		this.projectRepository = projectRepository;
@@ -107,5 +109,11 @@ public class DataController {
 		return null;
 
 	}
-
+	
+	@GetMapping(path = { "contact-me" })
+	@CrossOrigin(origins = "http://localhost:4200")
+	public Optional<Email> sendEmail(@RequestBody Email email) {
+		emailSender.sendEmail("schroniskoswietyspokoj@gmail.com",email.getSubject(),email.getMessage(),email.getSender());
+	return null;
+	}
 }
